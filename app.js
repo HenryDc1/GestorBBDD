@@ -65,7 +65,7 @@ app.get('/getTables', (req, res) => {
 app.post('/addData', (req, res) => {
     let objPost = req.body;
 
-    const sql = `INSERT INTO usuarios (nom, mail) VALUES ('${objPost.nombre}', ${objPost.edad})`;
+    const sql = `INSERT INTO usuarios (nom, mail) VALUES ('${objPost.nom}', ${objPost.mail})`;
 
     db.query(sql, (err, result) => {
         if (err) {
@@ -80,12 +80,12 @@ app.post('/addData', (req, res) => {
 
 app.post('/updateData', updateData);
 async function updateData(req, res) {
-    const { id, nuevoNombre, nuevaEdad } = req.body;
+    const { id, nuevonom, nuevamail } = req.body;
 
     try {
         // Ejemplo de actualización en una base de datos MySQL
-        const sql = `UPDATE usuarios SET nom = '${nuevoNombre}', mail = '${nuevaEdad}' WHERE id = '${id}'`;
-        await db.query(sql, [nuevoNombre, nuevaEdad, id]);
+        const sql = `UPDATE usuarios SET nom = '${nuevonom}', mail = '${nuevamail}' WHERE id = '${id}'`;
+        await db.query(sql, [nuevonom, nuevamail, id]);
 
         res.status(200).send({ success: true, message: 'Datos modificados con éxito' });
     } catch (error) {

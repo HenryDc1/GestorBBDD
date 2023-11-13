@@ -24,11 +24,11 @@
     </table>
     <br>
     <h5>Crear filas</h5>
-    <form id="addData">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="addNombre" name="nombre" required>
-        <label for="edad">Edad:</label>
-        <input type="number" id="addEdad" name="edad" required>
+    <form id="addData" action="/addData" method="POST">
+        <label for="nom">Nombre:</label>
+        <input type="text" id="addnom" name="nom" required>
+        <label for="mail">Gmail:</label>
+        <input type="text" id="addmail" name="mail" required>
         <button type="button" onclick="agregarDato()">Añadir Dato</button>
     </form>
     <br>
@@ -36,10 +36,10 @@
     <form  id="modifyData">
         <label for="id">ID:</label>
         <input type="number" id="modifyID" name="id" required>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="modifyNombre" name="nombre" required>
-        <label for="edad">Edad:</label>
-        <input type="number" id="modifyEdad" name="edad" required>
+        <label for="nom">Nombre:</label>
+        <input type="text" id="modifynom" name="nom" required>
+        <label for="mail">Gmail:</label>
+        <input type="text" id="modifymail" name="mail" required>
         <button type="button" onclick="modificarDato()">Modificar Dato</button>
     </form>
     <br>
