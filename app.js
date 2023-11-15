@@ -62,21 +62,34 @@ app.get('/getTables', (req, res) => {
     });
 });
 
-app.post('/addData', (req, res) => {
-    let objPost = req.body;
+// app.js
 
-    const sql = `INSERT INTO usuarios (nom, mail) VALUES ('${objPost.nom}', ${objPost.mail})`;
+// ... (tu código existente)
 
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.error('Error al añadir datos:', err);
-            res.status(500).send('Error interno del servidor');
-            return;
-        } else {
-            return;
-        }
-    });
-});
+app.post('/addData', addData);
+async function addData(req, res) {
+    const { nom, mail } = req.body;
+
+    try {
+        // Ejemplo de inserción en una base de datos MySQL
+        const sql = `INSERT INTO usuarios (nom, mail) VALUES ('${nom}','${mail}')`;
+
+        // Objeto con las variables y sus valores correspondientes
+        const values = { $nom: nom, $mail: mail };
+
+        await db.query(sql, values);
+        res.json({ success: true, message: 'Datos añadidos con éxito' });
+    } catch (error) {
+        console.error('Error al agregar datos:', error);
+        res.status(500).send({ success: false, message: 'Error interno del servidor' });
+    }
+}
+
+
+
+
+// ... (tu código existente)
+
 
 app.post('/updateData', updateData);
 async function updateData(req, res) {

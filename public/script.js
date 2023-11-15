@@ -82,11 +82,12 @@ async function loadTables() {
       console.error('Error al cargar las tablas:', error);
     }
   }
+// script.js
 
 async function agregarDato() {
     const nom = document.getElementById('addnom').value;
     const mail = document.getElementById('addmail').value;
-    console.log(nom, mail);
+    console.log('Valores:', nom, mail);
 
     // Crear el objeto de datos a enviar al servidor
     const requestData = {
@@ -94,35 +95,32 @@ async function agregarDato() {
         mail: mail
     };
 
-    console.log("Huevo");
-
     try {
-        console.log("Patata");
-        load('usuarios');
+        // Realizar una solicitud AJAX para agregar datos en el servidor
         let result = await fetch('/addData', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestData),
+            body: JSON.stringify(requestData)
         });
 
-        console.log('Result:', result);
-
-        result = await result.json(); // Añadido para intentar parsear la respuesta como JSON
-
-        if (result && result.ok && result.success) {
+        if (result.ok) {
             // La solicitud fue exitosa
-            console.log('Datos añadidos con éxito');
-            // window.location.reload();
+            console.log('Datos agregados con éxito');
+            // Puedes realizar acciones adicionales aquí si es necesario
+            load('usuarios'); // Recargar la tabla después de la adición
         } else {
             // La solicitud falló
-            console.error('Error al añadir datos:', result);
+            console.error('Error al agregar datos:', result.status, result.statusText);
+            // Puedes mostrar un mensaje de error al usuario o realizar acciones adicionales
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-    } finally {
-        console.log("Este bloque siempre se ejecuta");
+        // Puedes mostrar un mensaje de error al usuario o realizar acciones adicionales
     }
 }
+
+
+
 
 async function modificarDato() {
     const modifyid = document.getElementById('modifyID').value;
