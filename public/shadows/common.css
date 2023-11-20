@@ -1,0 +1,14 @@
+/*
+Aquest CSS és comú a tots els 'shadows' que el criden amb
+@import url("/shadows/common.css");
+*/
+.loading {
+    color: green;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.error {
+    color: red;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}

@@ -1,0 +1,25 @@
+@import url("/shadows/common.css");
+.root {
+    background-color: lightgray;
+    display: inline-block;
+    padding: 10px;
+}
+.row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.errorPwd {
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}

@@ -1,9 +1,11 @@
 const express = require("express");
+const crypto = require('crypto');
 const url = require("url");
 const { v4: uuidv4 } = require("uuid");
 const database = require("./utilsMySQL.js");
+const shadowsObj = require('./utilsShadows.js');
 const app = express();
-const port = 3007;
+const port = 3000;
 
 // Crear i configurar l'objecte de la base de dades
 var db = new database();
@@ -21,6 +23,7 @@ app.use(express.static("public"));
 
 // Configurar per rebre dades POST en format JSON
 app.use(express.json());
+let shadows = new shadowsObj()
 
 // Configurar direcció '/testDB'
 app.get("/", testDB);
@@ -30,24 +33,45 @@ async function testDB(req, res) {
 }
 
 // Configurar la direcció '/ajaxCall'
-app.post("/ajaxCall", ajaxCall);
+app.post('/ajaxCall', ajaxCall)
 async function ajaxCall(req, res) {
-  let objPost = req.body;
-  let result = "";
-
-  // Simulate delay (1 second)
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  if (objPost.callType == "tableData") {
     try {
-      let qry = `SELECT * FROM ${objPost.table}`;
-      result = await db.query(qry);
-    } catch (e) {
-      console.error('Error at "ajaxCall":', e);
+      let objPost = req.body;
+      let result = "";
+  
+      // Simulate delay (1 second)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+  
+      switch (objPost.callType) {
+        case "actionCheckUserByToken":
+          result = await actionCheckUserByToken(objPost);
+          break;
+        case "actionLogout":
+          result = await actionLogout(objPost);
+          break;
+        case "actionLogin":
+          result = await actionLogin(objPost);
+          break;
+        case "actionSignUp":
+          result = await actionSignUp(objPost);
+          break;
+        case "tableData":
+          let qry = `SELECT * FROM ${objPost.table}`;
+          result = await db.query(qry);
+          break;
+        default:
+          result = { result: "KO", message: "Invalid callType" };
+          break;
+      }
+  
+      res.send(result);
+    } catch (error) {
+      console.error('Error at "ajaxCall":', error);
+      res.status(500).send({ result: "KO", message: "Internal Server Error" });
     }
   }
-  res.send(result);
-}
+  
+  
 
 // Configurar la direcció '/getTables'
 app.get("/getTables", (req, res) => {
@@ -247,9 +271,11 @@ app.post("/deleteTable",deleteTable);
 
 
 // Activar el servidor
-const httpServer = app.listen(port, appListen);
-function appListen() {
-  console.log(`Example app listening on: http://localhost:${port}`);
+const httpServer = app.listen(port, appListen)
+async function appListen () {
+  await shadows.init('./public/index.html', './public/shadows')
+  console.log(`Example app listening on: http://localhost:${port}`)
+  console.log(`Development queries on: http://localhost:${port}/index-dev.html`)
 }
 
 // Close connections when process is killed
@@ -261,3 +287,113 @@ function shutDown() {
   db.end();
   process.exit(0);
 }
+app.get('/index-dev.html', getIndexDev)
+async function getIndexDev (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.send(shadows.getIndexDev())
+}
+
+// Configurar la direcció '/shadows.js' per retornar
+// tot el codi de les shadows en un sol arxiu
+app.get('/shadows.js', getShadows)
+async function getShadows (req, res) {
+  res.setHeader('Content-Type', 'application/javascript');
+  res.send(shadows.getShadows())
+}
+
+// Configurar la direcció '/ajaxCall'
+
+async function actionCheckUserByToken(objPost) {
+    try {
+      const { token } = objPost;
+  
+      // Buscar el usuario en la base de datos por el token
+      const selectQuery = `SELECT nom AS userName FROM usuarios WHERE token = '${token}'`;
+  
+      const result = await db.query(selectQuery);
+  
+      if (result.length === 0) {
+        return { result: "KO" };
+      } else {
+        return { result: "OK", userName: result[0].userName };
+      }
+    } catch (error) {
+      console.error('Error at "actionCheckUserByToken":', error);
+      return { result: "KO", message: "Error al verificar el usuario por token" };
+    }
+  }
+  
+
+  async function actionLogout(objPost) {
+    try {
+      const { token } = objPost;
+  
+      // Buscar el usuario en la base de datos por el token
+      const selectQuery = `SELECT nom AS userName FROM usuarios WHERE token = '${token}'`;
+  
+      const result = await db.query(selectQuery);
+  
+      if (result.length === 0) {
+        // Si no encuentra al usuario, aún se considera un logout exitoso
+        return { result: 'OK' };
+      } else {
+        // Actualizar el token en la base de datos (puedes establecer el token a NULL o algún valor especial)
+        const updateQuery = `UPDATE usuarios SET token = NULL WHERE token = '${token}'`;
+        await db.query(updateQuery);
+  
+        return { result: 'OK' };
+      }
+    } catch (error) {
+      console.error('Error at "actionLogout":', error);
+      return { result: 'KO', message: 'Error al realizar el logout' };
+    }
+  }
+  
+
+async function actionLogin(objPost) {
+    try {
+      const { userName, userPassword } = objPost;
+      const hash = crypto.createHash("md5").update(userPassword).digest("hex");
+  
+      // Buscar el usuario en la base de datos
+      const selectQuery = `SELECT nom AS userName, token FROM usuarios WHERE nom = '${userName}' AND pwdHash = '${hash}'`;
+  
+      const result = await db.query(selectQuery);
+  
+      if (result.length === 0) {
+        return { result: "KO" };
+      } else {
+        const token = uuidv4();
+  
+        // Actualizar el token en la base de datos
+        const updateQuery = `UPDATE usuarios SET token = '${token}' WHERE nom = '${userName}'`;
+        await db.query(updateQuery);
+  
+        return { result: "OK", userName: result[0].userName, token: token };
+      }
+    } catch (error) {
+      console.error('Error at "actionLogin":', error);
+      return { result: "KO", message: "Error al iniciar sesión" };
+    }
+  }
+  
+
+async function actionSignUp(objPost) {
+    try {
+      let userName = objPost.userName;
+      let userPassword = objPost.userPassword;
+      let hash = crypto.createHash("md5").update(userPassword).digest("hex");
+      let token = uuidv4();
+  
+      // Insertar el usuario en la base de datos
+      const insertQuery = `INSERT INTO usuarios (nom, pwdHash, token) VALUES ('${userName}', '${hash}','${token}')`;
+      const insertValues = [userName, hash, token];
+  
+      await db.query(insertQuery, insertValues);
+  
+      return { result: "OK", userName: userName, token: token };
+    } catch (error) {
+      console.error('Error at "actionSignUp":', error);
+      return { result: "KO", message: "Error al registrar el usuario" };
+    }
+  }
