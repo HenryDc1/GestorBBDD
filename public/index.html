@@ -47,6 +47,9 @@
     <form  id="deleteData">
         <label for="id">ID:</label>
         <input type="number" id="deleteID" name="id" required>
+        <p id="feedbackMessageDeleteData"></p>
+
+
         <button type="button" onclick="eliminarDato()">Eliminar Dato</button>
     </form>
     <br>
@@ -55,11 +58,52 @@
     <ul id="tableList">
     </ul>
     <h5>Crear Tablas</h5>
+    <form id="createTable">
+        <label for="tableName">Nombre:</label>
+        <input type="text" id="createTableName" name="tableName" required>
+        <label for="numColumn">Introduce el numero de columnas de la tabla:</label>
+        <input type="number" id="numeroColumnas" name="numColumns" required oninput="crearCamposDeColumnas()">
+       
+        <div id="columnInputs"></div>
 
+
+        <!-- Feedback para el usuario -->
+        <p id="feedbackMessage"></p>
+
+
+        <button type="button" onclick="crearTabla()">Crear tabla</button>
+    </form>
     <h5>Modificar taules</h5>
-
+    <form id="modifyTable">
+        <label for="nameTable">Nombre de la tabla:</label>
+        <input type="text" id="nameModifyTable" name="nameoftable" required>
+   
+        <label for="operation">Operación:</label>
+        <select id="operation" name="operation" onchange="toggleColumnTypeInput()">
+            <option value="miss">--</option>
+            <option value="add">Agregar columna</option>
+            <option value="delete">Borrar columna</option>
+        </select>
+   
+        <label for="nom">Nombre columna agregar/borrar:</label>
+        <input type="text" id="columnName" name="nom" required>
+   
+        <div id="columnTypeContainer" style="display:none;">
+            <label for="typeColumn">Tipo de columna:</label>
+            <input type="text" id="columnType" name="typeColumn" required>
+        </div>
+   
+        <button type="button" onclick="modificarTabla()">Modificar Dato</button>
+    </form>
     <h5>Esborrar taules</h5>
-
+    <!-- Ejemplo consulta sql:DROP TABLE `world`.`puuebafinal2`-->
+    <form  id="deleteTable">
+        <label for="deleteTablebyName">Nom tabla:</label>
+        <input type="text" id="deleteTablebyName" name="deltable" required>
+        <p id="feedbackMessageDeleteTable"></p>
+        <button type="button" onclick="eliminarTabla()">Eliminar Tabla</button>
+    </form>
 </body>
+
 
 </html>
