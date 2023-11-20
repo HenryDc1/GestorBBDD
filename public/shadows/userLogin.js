@@ -156,17 +156,26 @@ class UserLogin extends HTMLElement {
         switch (viewName) {
         case 'viewInfo':
             this.shadow.querySelector('#viewInfo').style.removeProperty('display')
+<<<<<<< HEAD
             document.querySelector('.menu').style.display = 'none';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
             this.setViewInfoStatus(viewStatus)
             break
         case 'viewLoginForm':
             this.shadow.querySelector('#viewLoginForm').style.removeProperty('display')
+<<<<<<< HEAD
             document.querySelector('.menu').style.display = 'none';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
             this.setViewLoginStatus(viewStatus)
             break
         case 'viewSignUpForm':
             this.shadow.querySelector('#viewSignUpForm').style.removeProperty('display')
+<<<<<<< HEAD
             document.querySelector('.menu').style.display = 'none';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
             this.setViewSignUpStatus(viewStatus)
             break
         }
@@ -203,7 +212,10 @@ class UserLogin extends HTMLElement {
     async actionLogout() {
         // Mostrar la vista amb status 'loading'
         this.showView('viewInfo', 'loading')
+<<<<<<< HEAD
         document.querySelector('.menu').style.display = 'block';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
 
         // Identificar usuari si hi ha "token" al "LocalStorage"
         let tokenValue = window.localStorage.getItem("token")
@@ -237,7 +249,10 @@ class UserLogin extends HTMLElement {
         if (resultData.result == 'OK') {
             this.setUserInfo(resultData.userName, resultData.token)
             this.showView('viewInfo', 'logged')
+<<<<<<< HEAD
             document.querySelector('.menu').style.display = 'block';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
         } else {
             // Esborrar el password
             refPassword.value = ""
@@ -267,7 +282,10 @@ class UserLogin extends HTMLElement {
         if (resultData.result == 'OK') {
             this.setUserInfo(resultData.userName, resultData.token)
             this.showView('viewInfo', 'logged')
+<<<<<<< HEAD
             document.querySelector('.menu').style.display = 'block';
+=======
+>>>>>>> 95b3c6e (Actualizacion 2)
         } else {
             // Esborrar el password
             refPassword.value = ""

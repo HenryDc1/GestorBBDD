@@ -1,72 +1,25 @@
 @import url("/shadows/common.css");
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+.root {
+    background-color: lightgray;
+    display: inline-block;
+    padding: 10px;
 }
-
-#viewInfo {
+.row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.form {
     display: flex;
     flex-direction: column;
-    margin: 20px auto;
-    max-width: 80px;
 }
-
-.form {
-    margin: 20px auto;
-    max-width: 300px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-    text-align: center;
-    font-size: 1.5em;
-    color: #333;
-}
-
-form {
-    margin-top: 20px;
-}
-
-div {
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-button {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-a {
-    text-align: center;
-    text-decoration: none;
-    color: #4caf50;
-}
-
-a:hover {
-    text-decoration: underline;
+.errorPwd {
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }

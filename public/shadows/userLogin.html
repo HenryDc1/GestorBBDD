@@ -1,40 +1,44 @@
-<div id="viewInfo">
-    <div id="infoUser" style="display: none;">User Name</div>
-    <div id="infoLoading" class="loading" style="order: 2;">Loading ...</div>
-    <div class="row2">
-        <button id="infoBtnLogOut" style="width: 100%;">Logout</button>
-    </div>
-</div>
-<div id="viewLoginForm" class="form">
-    <form id="loginForm">
-        <div class="title">Login</div>
-        <div>User:</div>
-        <input id="loginUserName"  type="text"/>
-        <div>Password</div>
-        <input id="loginPassword" type="password"/>
-        <div id="loginError" class="error">Error amb les dades</div>
-        <div id="loginLoading" class="loading">Loading ...</div>
+<div class="root">
+    <div id="viewInfo">
+        <div class="title">Login info</div>
+        <div id="infoUser">User Name</div>
+        
+        <div id="infoLoading" class="loading">Loading ...</div>
         <div class="row">
-            <button id="loginBtn">Login</button>
-            <a href="javascript:void(0)" id="loginShowSignUpForm">Sign Up</a>
+            <button id="infoBtnLogOut">Logout</button>
         </div>
-    </form>
-</div>
-<div id="viewSignUpForm" class="form">
-    <form id="signUpForm">
-        <div class="title">Sign Up</div>
-        <div>User:</div>
-        <input id="signUpUserName"  type="text"/>
-        <div>Password</div>
-        <input id="signUpPassword" type="password"/>
-        <div>Retype password:</div>
-        <input id="signUpPasswordCheck" type="password"/>
-        <div id="signUpPasswordError" class="error errorPwd">Contrasenyes diferents</div>
-        <div id="signUpError" class="error">Error amb les dades</div>
-        <div id="signUpLoading" class="loading">Loading ...</div>
-        <div class="row" id="signUpButtons">
-            <button id="signUpBtn">Sign Up</button>
-            <a href="javascript:void(0)" id="signUpShowLoginForm">Login</a>
-        </div>
-    </form>
+    </div>
+    <div id="viewLoginForm" class="form">
+        <form id="loginForm">
+            <div class="title">Login</div>
+            <div>User:</div>
+            <input id="loginUserName"  type="text"/>
+            <div>Password</div>
+            <input id="loginPassword" type="password"/>
+            <div id="loginError" class="error">Error amb les dades</div>
+            <div id="loginLoading" class="loading">Loading ...</div>
+            <div class="row">
+                <button id="loginBtn">Login</button>
+                <a href="javascript:void(0)" id="loginShowSignUpForm">Sign Up</a>
+            </div>
+        </form>
+    </div>
+    <div id="viewSignUpForm" class="form">
+        <form id="signUpForm">
+            <div class="title">Sign Up</div>
+            <div>User:</div>
+            <input id="signUpUserName"  type="text"/>
+            <div>Password</div>
+            <input id="signUpPassword" type="password"/>
+            <div>Retype password:</div>
+            <input id="signUpPasswordCheck" type="password"/>
+            <div id="signUpPasswordError" class="error errorPwd">Contrasenyes diferents</div>
+            <div id="signUpError" class="error">Error amb les dades</div>
+            <div id="signUpLoading" class="loading">Loading ...</div>
+            <div class="row" id="signUpButtons">
+                <button id="signUpBtn">Sign Up</button>
+                <a href="javascript:void(0)" id="signUpShowLoginForm">Login</a>
+            </div>
+        </form>
+    </div>
 </div>
