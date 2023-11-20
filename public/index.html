@@ -17,92 +17,106 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Gestor de Bases de Dades Web</h1>
-    <h3>¿Qué quieres hacer con las Filas?</h3>
-    <h7>Tabla de Datos</h7>
-    <table border="1" id="tablaDatos">
-    </table>
-    <br>
-    <h5>Crear filas</h5>
-    <form id="addData" action="/addData" method="POST">
-        <label for="nom">Nombre:</label>
-        <input type="text" id="addnom" name="nom" required>
-        <label for="mail">Gmail:</label>
-        <input type="text" id="addmail" name="mail" required>
-        <button type="button" onclick="agregarDato()">Añadir Dato</button>
-    </form>
-    <br>
-    <h5>Modificar filas</h5>
-    <form  id="modifyData">
-        <label for="id">ID:</label>
-        <input type="number" id="modifyID" name="id" required>
-        <label for="nom">Nombre:</label>
-        <input type="text" id="modifynom" name="nom" required>
-        <label for="mail">Gmail:</label>
-        <input type="text" id="modifymail" name="mail" required>
-        <button type="button" onclick="modificarDato()">Modificar Dato</button>
-    </form>
-    <br>
-    <h5>Esborrar filas</h5>
-    <form  id="deleteData">
-        <label for="id">ID:</label>
-        <input type="number" id="deleteID" name="id" required>
-        <p id="feedbackMessageDeleteData"></p>
-
-
-        <button type="button" onclick="eliminarDato()">Eliminar Dato</button>
-    </form>
-    <br>
-    <h3>¿Qué quieres hacer con las tablas?</h3>
-    <h7>Tabla de Tablas</h7>
-    <ul id="tableList">
-    </ul>
-    <h5>Crear Tablas</h5>
-    <form id="createTable">
-        <label for="tableName">Nombre:</label>
-        <input type="text" id="createTableName" name="tableName" required>
-        <label for="numColumn">Introduce el numero de columnas de la tabla:</label>
-        <input type="number" id="numeroColumnas" name="numColumns" required oninput="crearCamposDeColumnas()">
-       
-        <div id="columnInputs"></div>
-
-
-        <!-- Feedback para el usuario -->
-        <p id="feedbackMessage"></p>
-
-
-        <button type="button" onclick="crearTabla()">Crear tabla</button>
-    </form>
-    <h5>Modificar taules</h5>
-    <form id="modifyTable">
-        <label for="nameTable">Nombre de la tabla:</label>
-        <input type="text" id="nameModifyTable" name="nameoftable" required>
-   
-        <label for="operation">Operación:</label>
-        <select id="operation" name="operation" onchange="toggleColumnTypeInput()">
-            <option value="miss">--</option>
-            <option value="add">Agregar columna</option>
-            <option value="delete">Borrar columna</option>
-        </select>
-   
-        <label for="nom">Nombre columna agregar/borrar:</label>
-        <input type="text" id="columnName" name="nom" required>
-   
-        <div id="columnTypeContainer" style="display:none;">
-            <label for="typeColumn">Tipo de columna:</label>
-            <input type="text" id="columnType" name="typeColumn" required>
+    <div class="EditarDatos">
+        <h1>Gestor de Base de Dades Web</h1>
+        <h3>Que vols fer amb les dades d'aquesta taula?</h3>
+        <h7>Taula de Dades</h7>
+        <table id="tablaDatos">
+        </table>
+        <br>
+        <div class="forms">
+            <h3>Crear dades</h3>
+            <hr>
+            <form id="addData" action="/addData" method="POST">
+                <label for="nom">Nombre:</label>
+                <input type="text" id="addnom" name="nom" required>
+                <label for="mail">Gmail:</label>
+                <input type="text" id="addmail" name="mail" required>
+                <button type="button" onclick="agregarDato()">Afegir Dades</button>
+            </form>
         </div>
-   
-        <button type="button" onclick="modificarTabla()">Modificar Dato</button>
-    </form>
-    <h5>Esborrar taules</h5>
-    <!-- Ejemplo consulta sql:DROP TABLE `world`.`puuebafinal2`-->
-    <form  id="deleteTable">
-        <label for="deleteTablebyName">Nom tabla:</label>
-        <input type="text" id="deleteTablebyName" name="deltable" required>
-        <p id="feedbackMessageDeleteTable"></p>
-        <button type="button" onclick="eliminarTabla()">Eliminar Tabla</button>
-    </form>
+        <br>
+        <div class="forms">
+            <h3>Modificar dades</h3>
+            <hr>
+            <form  id="modifyData">
+                <label for="id">ID:</label>
+                <input type="number" id="modifyID" name="id" required>
+                <label for="nom">Nombre:</label>
+                <input type="text" id="modifynom" name="nom" required>
+                <label for="mail">Gmail:</label>
+                <input type="text" id="modifymail" name="mail" required>
+                <button type="button" onclick="modificarDato()">Modificar Dades</button>
+            </form>
+        </div>
+        <br>
+        <div class="forms">
+            <h3>Esborrar dades</h3>
+            <hr>
+            <form  id="deleteData">
+                <label for="id">ID:</label>
+                <input type="number" id="deleteID" name="id" required>
+                <p id="feedbackMessageDeleteData"></p>
+                <button type="button" onclick="eliminarDato()">Eliminar Dades</button>
+            </form>
+        </div>
+    </div>
+    <div class="EditarTablas">
+        <h3>Que vols fer amb les taules?</h3>
+        <h7>Llista de Taules</h7>
+        <ul id="tableList">
+        </ul>
+        <div class="forms">
+            <h3>Crear Taules</h3>
+            <form id="createTable">
+                <label for="tableName">Nom:</label>
+                <input type="text" id="createTableName" name="tableName" required>
+                <label for="numColumn">Introdueix el nombre de columnes de la taula:</label>
+                <input type="number" id="numeroColumnas" name="numColumns" required oninput="crearCamposDeColumnas()">
+            
+                <div id="columnInputs"></div>
+                <!-- Feedback para el usuario -->
+                <p id="feedbackMessage"></p>
+                <button type="button" onclick="crearTabla()">Crear taula</button>
+            </form>
+        </div>
+        <br>
+        <div class="forms">
+            <h3>Modificar taules</h3>
+            <form id="modifyTable">
+                <label for="nameTable">Nom de la taula:</label>
+                <input type="text" id="nameModifyTable" name="nameoftable" required>
+        
+                <label for="operation">Operació:</label>
+                <select id="operation" name="operation" onchange="toggleColumnTypeInput()">
+                    <option value="miss">--</option>
+                    <option value="add">Agregar columna</option>
+                    <option value="delete">Esborrar columna</option>
+                </select>
+        
+                <label for="nom">Nom columna agregar/esborrar:</label>
+                <input type="text" id="columnName" name="nom" required>
+        
+                <div id="columnTypeContainer" style="display:none;">
+                    <label for="typeColumn">Tipo de columna:</label>
+                    <input type="text" id="columnType" name="typeColumn" required>
+                </div>
+        
+                <button type="button" onclick="modificarTabla()">Modificar Taula</button>
+            </form>
+        </div>
+        <br>
+        <div class="forms">
+            <h3>Esborrar taules</h3>
+            <!-- Ejemplo consulta sql:DROP TABLE `world`.`puuebafinal2`-->
+            <form  id="deleteTable">
+                <label for="deleteTablebyName">Nom taula:</label>
+                <input type="text" id="deleteTablebyName" name="deltable" required>
+                <p id="feedbackMessageDeleteTable"></p>
+                <button type="button" onclick="eliminarTabla()">Eliminar Taula</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 

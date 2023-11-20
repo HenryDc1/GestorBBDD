@@ -1,5 +1,110 @@
 body {
-    font-family: "Open Sans", sans-serif;
-    margin: 25;
-    user-select: none;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.EditarDatos, .EditarTablas {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forms {
+    padding: 10px;
+    border: 1px solid;
+    color: #777;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h3{
+    color: #555;
+}
+
+h7 {
+    color: #777;
+    font-size: 1.2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#columnInputs {
+    margin-top: 10px;
+}
+
+#feedbackMessage, #feedbackMessageDeleteData, #feedbackMessageDeleteTable {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+#columnTypeContainer {
+    display: none;
+}
+
+.EditarTablas {
+    margin-top: 40px;
+}
+
+#tableList {
+    list-style: none;
+    padding: 0;
+}
+
+#tableList li {
+    margin-bottom: 5px;
 }
