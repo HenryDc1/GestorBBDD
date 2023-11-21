@@ -1,6 +1,7 @@
 window.addEventListener('load', init)
 async function init() {
     await load('usuarios')
+    await loadTables();
 }
 
 
@@ -83,6 +84,7 @@ async function loadTables() {
 
       // Muestra la lista de tablas en el elemento con id 'tableList'
       let tableList = document.getElementById('tableList');
+      tableList.innerHTML = '';
       tables.forEach(table => {
         let li = document.createElement('li');
         li.textContent = table;
@@ -429,4 +431,27 @@ async function eliminarTabla(){
 
 
 
+}
+function mostrarDades() {
+    document.querySelector('.menu-item1').style.display = 'none';
+    document.querySelector('.menu-item2').style.display = 'flex';
+    document.querySelector('.EditarDatos').style.display = 'block';
+}
+
+function ocultarDades() {
+    document.querySelector('.menu-item1').style.display = 'flex';
+    document.querySelector('.menu-item2').style.display = 'none';
+    document.querySelector('.EditarDatos').style.display = 'none';
+}
+
+function mostrarTaules() {
+    document.querySelector('.menu-item1').style.display = 'none';
+    document.querySelector('.menu-item3').style.display = 'flex';
+    document.querySelector('.EditarTablas').style.display = 'block';
+}
+
+function ocultarTaules() {
+    document.querySelector('.menu-item1').style.display = 'flex';
+    document.querySelector('.menu-item3').style.display = 'none';
+    document.querySelector('.EditarTablas').style.display = 'none';
 }

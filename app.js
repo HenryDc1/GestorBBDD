@@ -11,9 +11,9 @@ const port = 3000;
 var db = new database();
 db.init({
   host: "localhost",
-  port: 3307,
+  port: 3306,
   user: "root",
-  password: "pwd",
+  password: "12345",
   database: "world"
   })
 
@@ -74,7 +74,11 @@ async function ajaxCall(req, res) {
   
 
 // Configurar la direcció '/getTables'
-app.get("/getTables", (req, res) => {
+//app.get("/getTables", (req, res) =>
+
+app.post("/getTables", getTables);
+
+async function getTables(req, res){
   db.query("SHOW TABLES", (err, result) => {
     if (err) {
       console.error("Error al obtener las tablas:", err);
@@ -82,10 +86,10 @@ app.get("/getTables", (req, res) => {
       return;
     }
 
-    const tables = result.map((table) => table.Tables_in_usuarios);
+    const tables = result.map((table) => table[`Tables_in_${db.config.database}`]);
     res.json(tables);
   });
-});
+};
 
 app.post("/addData", addData);
 

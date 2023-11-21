@@ -5,7 +5,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.EditarDatos, .EditarTablas {
+.menu-item1, .menu-item2, .menu-item3 {
     margin: 20px auto;
     max-width: 800px;
     background-color: #fff;
@@ -14,15 +14,43 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.EditarDatos, .EditarTablas, .Titulo {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #eee;
+}
+
 .forms {
     padding: 10px;
     border: 1px solid;
-    color: #777;
+    color: #bbb;
 }
 
 h1 {
     text-align: center;
     color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #444;
 }
 
 h3{
@@ -40,17 +68,18 @@ table {
     margin-top: 10px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+table, tr, td {
+    border: 1px solid #777;
 }
 
-th, td {
+tr, td {
     padding: 10px;
     text-align: left;
 }
 
-th {
-    background-color: #f2f2f2;
+tr:first-child {
+    background-color: palegreen;
+    font-weight: bold;
 }
 
 form {
@@ -63,14 +92,14 @@ label {
     color: #333;
 }
 
-input, select, button {
+input, select, .boton {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     box-sizing: border-box;
 }
 
-button {
+.boton {
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -79,7 +108,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.boton:hover {
     background-color: #45a049;
 }
 
@@ -88,7 +117,7 @@ button:hover {
 }
 
 #feedbackMessage, #feedbackMessageDeleteData, #feedbackMessageDeleteTable {
-    color: #ff0000;
+    color: #4caf50;
     margin-top: 10px;
 }
 
@@ -100,11 +129,11 @@ button:hover {
     margin-top: 40px;
 }
 
-#tableList {
+/* #tableList {
     list-style: none;
     padding: 0;
 }
 
 #tableList li {
     margin-bottom: 5px;
-}
+} */
